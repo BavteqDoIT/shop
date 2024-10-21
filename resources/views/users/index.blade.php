@@ -9,7 +9,7 @@
                 <th scope="col">E-mail</th>
                 <th scope="col">Imię</th>
                 <th scope="col">Nazwisko</th>
-                <th scope="col">Number telefonu</th>
+                <th scope="col">Numer telefonu</th>
                 <th scope="col">Akcje</th>
             </tr>
             </thead>
@@ -26,5 +26,6 @@
             @endforeach
             </tbody>
         </table>
+        {{$users -> links()}}
     </div>
 @endsection
