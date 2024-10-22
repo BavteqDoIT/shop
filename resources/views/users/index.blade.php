@@ -34,25 +34,10 @@
     </div>
 @endsection
 @section('javascript')
-    $(function () {
-        $('.delete').click(function (){
-            $.ajax({
-                method: "DELETE",
-                url: "http://shop.test/users/" + $(this).data("id"),
-                // data: { id: $(this).data("id")}
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-            .done(function ( response ) {
-                alert("SUCCESS");
-                location.reload();
-            })
-            .fail(function (response) {
-                alert("ERROR");
-            });
-        });
-    });
+    const deleteUrl = "{{url('users')}}/";
+@endsection
+@section('js-files')
+    <script src="{{asset('js/delete.js')}}"></script>
 @endsection
 
 
