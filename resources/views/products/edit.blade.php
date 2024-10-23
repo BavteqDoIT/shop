@@ -8,7 +8,8 @@
                     <div class="card-header">Edycja produktu</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('products.update', $product->id) }}"
+                              enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -31,7 +32,8 @@
 
                                 <div class="col-md-6">
                                     <textarea id="description" maxlength="1500"
-                                           class="form-control @error('description') is-invalid @enderror" name="description" autofocus>
+                                              class="form-control @error('description') is-invalid @enderror"
+                                              name="description" required autofocus>
                                         {{ $product->description }}
                                     </textarea>
 
@@ -43,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="phone_number" class="col-md-4 col-form-label text-md-end">Ilość</label>
+                                <label for="amount" class="col-md-4 col-form-label text-md-end">Ilość</label>
 
                                 <div class="col-md-6">
                                     <input id="amount" type="number" min="0"
@@ -87,7 +89,9 @@
 
                             <div class="row mb-3 justify-content-center">
                                 <div class="col-md-6">
-                                    <img src="{{asset('storage/'.$product->image_path)}}" alt="Zdjęcie produktu">
+                                    @if(!is_null($product->image_path))
+                                        <img src="{{asset('storage/'.$product->image_path)}}" alt="Zdjęcie produktu">
+                                    @endif
                                 </div>
                             </div>
 
