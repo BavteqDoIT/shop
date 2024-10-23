@@ -36,6 +36,9 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $product = new Product($request->all());
+        if ($request->hasFile('image')) {
+            $product->image_path = $request->file('image')->store('products');
+        }
         $product->save();
         return redirect()->route('products.index');
     }
@@ -66,6 +69,9 @@ class ProductController extends Controller
     public function update(Request $request, Product $product):RedirectResponse
     {
         $product->fill($request->all());
+        if ($request->hasFile('image')) {
+            $product->image_path = $request->file('image')->store('products');
+        }
         $product->save();
         return redirect()->route('products.index');
     }
