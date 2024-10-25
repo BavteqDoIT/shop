@@ -66,6 +66,7 @@ class UserController extends Controller
     {
         try{
             $user->delete();
+            session()->flash('status','User deleted successfully');
             return response() -> json([
                 'status' => 'success',
             ]);

@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use MongoDB\Driver\Session;
 
 class ProductController extends Controller
 {
@@ -45,7 +46,7 @@ class ProductController extends Controller
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('status','Product stored successfully');
     }
 
     /**
@@ -80,7 +81,7 @@ class ProductController extends Controller
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('status','Product updated successfully');;
     }
 
     /**
@@ -91,6 +92,7 @@ class ProductController extends Controller
 
         try{
             $product->delete();
+            session()->flash('status','Product deleted successfully');
             return response() -> json([
                 'status' => 'success',
             ]);

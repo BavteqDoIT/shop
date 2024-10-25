@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @include('helpers.flash-messages')
         <table class="table table-hover">
             <thead>
             <tr>
